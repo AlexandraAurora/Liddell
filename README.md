@@ -6,7 +6,7 @@ Liddell notification banners
 2. Install Liddell
 
 ## Compiling
-  - Depends on libKitten
+  - Depends on libKitten & libGCUniversal
   - You may want to edit the `Makefiles` to suit your theos installation
 
 ## Note
