@@ -73,6 +73,8 @@
         self.liddellIconView = [UIImageView new];
         [[self liddellIconView] setImage:[[self icons] objectAtIndex:0]];
         [[self liddellIconView] setContentMode:UIViewContentModeScaleAspectFit];
+        [[self liddellIconView] setClipsToBounds:YES];
+        [[[self liddellIconView] layer] setCornerRadius:[iconCornerRadiusValue doubleValue]];
         [[self liddellView] addSubview:[self liddellIconView]];
 
         [[self liddellIconView] setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -219,6 +221,9 @@
     if ([backgroundColorValue intValue] == 2) [preferences registerObject:&customBackgroundColorValue default:@"000000" forKey:@"customBackgroundColor"];
     [preferences registerObject:&blurModeValue default:@"3" forKey:@"blurMode"];
     if ([blurModeValue intValue] != 0) [preferences registerObject:&blurAmountValue default:@"1" forKey:@"blurAmount"];
+
+    // icon
+    [preferences registerObject:&iconCornerRadiusValue default:@"0" forKey:@"iconCornerRadius"];
     
     // text
     [preferences registerObject:&textColorValue default:@"0" forKey:@"textColor"];

@@ -22,6 +22,9 @@ NSString* customBackgroundColorValue = @"000000";
 NSString* blurModeValue = @"3";
 NSString* blurAmountValue = @"1";
 
+// icon
+NSString* iconCornerRadiusValue = @"0";
+
 // text
 NSString* textColorValue = @"0";
 NSString* customTextColorValue = @"FFFFFF";

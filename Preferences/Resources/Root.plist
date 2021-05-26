@@ -85,7 +85,7 @@
 			<key>key</key>
 			<string>height</string>
 			<key>min</key>
-			<real>30</real>
+			<real>20</real>
 			<key>max</key>
 			<real>50</real>
 			<key>showValue</key>
@@ -247,6 +247,41 @@
 			<true/>
 			<key>segmentCount</key>
 			<real>9</real>
+		</dict>
+
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Icon</string>
+			<key>footerText</key>
+			<string>To get a rounded icon take the height, substract 13 and divide it by 2</string>
+			<key>isStaticText</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSStaticTextCell</string>
+			<key>label</key>
+			<string>Corner radius</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSliderCell</string>
+			<key>default</key>
+			<real>0</real>
+			<key>defaults</key>
+			<string>love.litten.liddellpreferences</string>
+			<key>key</key>
+			<string>iconCornerRadius</string>
+			<key>min</key>
+			<real>0</real>
+			<key>max</key>
+			<real>18.5</real>
+			<key>showValue</key>
+			<true/>
+			<key>isSegmented</key>
+			<false/>
 		</dict>
 
 		<dict>
