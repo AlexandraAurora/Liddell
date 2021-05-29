@@ -16,7 +16,7 @@
     %orig;
 
     if (![[self _viewControllerForAncestor] respondsToSelector:@selector(delegate)]) return;
-    if (![[[self _viewControllerForAncestor] delegate] isKindOfClass:%c(SBNotificationBannerDestination)]) return; // check if the notificatin is a banner
+    if (![[[self _viewControllerForAncestor] delegate] isKindOfClass:%c(SBNotificationBannerDestination)]) return; // check if the notification is a banner
 
     // remove the original notification
     for (UIView* subview in [self subviews]) {
@@ -192,6 +192,12 @@
             ]];
         }
     }
+
+}
+
+- (void)_setGrabberVisible:(BOOL)arg1 {
+
+    %orig(NO);
 
 }
 
