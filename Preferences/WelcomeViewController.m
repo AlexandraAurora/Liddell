@@ -2,15 +2,29 @@
 
 @implementation WelcomeViewController
 
+
 - (void)viewDidLoad {
 
     [super viewDidLoad];
-    [[self view] setBackgroundColor:[UIColor systemBackgroundColor]];
-    [self setModalInPresentation:YES];
-
 
     self.preferences = [[HBPreferences alloc] initWithIdentifier:@"love.litten.liddellpreferences"];
+    [[self preferences] registerBool:&shouldShowWelcome default:YES forKey:@"shouldShowWelcome"];
 
+    if(shouldShowWelcome) {
+
+        [self presentWelcomeController];
+        [[self preferences] setBool:NO forKey:@"shouldShowWelcome"];
+        [[self preferences] setBool:YES forKey:@"wasWelcomed"];
+
+    }
+
+}
+
+
+- (void)presentWelcomeController {
+
+    [[self view] setBackgroundColor:[UIColor systemBackgroundColor]];
+    [self setModalInPresentation:NO];
 
     NSData* inData = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:@"/Library/PreferenceBundles/LiddellPreferences.bundle/welcome/Circle Of Love.ttf"]];
     CFErrorRef error;
@@ -331,8 +345,8 @@
 - (void)dismissWelcomeViewController {
     
     [self dismissViewControllerAnimated:YES completion:nil];
-    [[self preferences] setBool:YES forKey:@"wasWelcomed"];
     
 }
+
 
 @end

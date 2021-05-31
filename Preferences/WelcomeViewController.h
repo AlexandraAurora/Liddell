@@ -2,6 +2,8 @@
 #import <CoreText/CoreText.h>
 #import <Cephei/HBPreferences.h>
 
+BOOL shouldShowWelcome;
+
 @interface WelcomeViewController : UIViewController
 @property(nonatomic, retain)HBPreferences* preferences;
 @property(nonatomic, retain)UIImageView* headerImageView;
