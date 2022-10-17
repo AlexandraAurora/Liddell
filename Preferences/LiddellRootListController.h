@@ -11,7 +11,6 @@
 #import <CepheiPrefs/HBAppearanceSettings.h>
 #import <Cephei/HBPreferences.h>
 #import <Cephei/HBRespringController.h>
-#import <LocalAuthentication/LocalAuthentication.h>
 
 @interface LiddellAppearanceSettings : HBAppearanceSettings
 @end
