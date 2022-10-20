@@ -9,6 +9,8 @@
 
 BBServer* bbServer;
 
+#pragma mark - Notification class properties
+
 static UIView* liddellView(NCNotificationShortLookView* self, SEL _cmd) {
     return (UIView *)objc_getAssociatedObject(self, (void *)liddellView);
 };
@@ -51,6 +53,8 @@ static void setLiddellContentLabel(NCNotificationShortLookView* self, SEL _cmd, 
     objc_setAssociatedObject(self, (void *)liddellContentLabel, rawValue, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
+#pragma mark - Notification class hooks
+
 void (* orig_NCNotificationShortLookView_didMoveToWindow)(NCNotificationShortLookView* self, SEL _cmd);
 void override_NCNotificationShortLookView_didMoveToWindow(NCNotificationShortLookView* self, SEL _cmd) {
     orig_NCNotificationShortLookView_didMoveToWindow(self, _cmd);
@@ -87,19 +91,18 @@ void override_NCNotificationShortLookView_didMoveToWindow(NCNotificationShortLoo
         [subview removeFromSuperview];
     }
 
-
     // liddell view
     if (![self liddellView]) {
         self.liddellView = [[UIView alloc] init];
         [[self liddellView] setClipsToBounds:YES];
         [[[self liddellView] layer] setCornerRadius:pfCornerRadius];
-        
+
         if (pfBackgroundColor == kBackgroundColorTypeAdaptive) {
             [[self liddellView] setBackgroundColor:[[libKitten backgroundColor:[[self icons] objectAtIndex:0]] colorWithAlphaComponent:1]];
         } else if (pfBackgroundColor == kBackgroundColorTypeCustom) {
             [[self liddellView] setBackgroundColor:[GcColorPickerUtils colorWithHex:pfCustomBackgroundColor]];
         }
-        
+
         if (pfBorderWidth != 0) {
             [[[self liddellView] layer] setBorderWidth:pfBorderWidth];
             if (pfBorderColor == kBorderColorTypeAdaptive) {
@@ -143,7 +146,7 @@ void override_NCNotificationShortLookView_didMoveToWindow(NCNotificationShortLoo
             [[[self liddellBlurView] bottomAnchor] constraintEqualToAnchor:[[self liddellView] bottomAnchor]]
         ]];
     }
-    
+
 
     // icon view
     if (pfShowIcon && ![self liddellIconView]) {
@@ -151,7 +154,7 @@ void override_NCNotificationShortLookView_didMoveToWindow(NCNotificationShortLoo
         [[self liddellIconView] setImage:[[self icons] objectAtIndex:0]];
         [[self liddellIconView] setContentMode:UIViewContentModeScaleAspectFit];
         [[self liddellIconView] setClipsToBounds:YES];
-        
+
         if (pfIconCornerRadius == -1) {
             [[[self liddellIconView] layer] setCornerRadius:(pfHeight - 13) / 2];
         } else {
@@ -216,7 +219,8 @@ void override_NCNotificationShortLookView_didMoveToWindow(NCNotificationShortLoo
         }
     }
 
-    [[self liddellTitleLabel] layoutIfNeeded]; // this fixes a bug which causes the app name to disappear on long notification messages
+    // this fixes a bug which causes the app name to disappear on long notification messages
+    [[self liddellTitleLabel] layoutIfNeeded];
 
 
     // content label
@@ -295,6 +299,8 @@ id override_BBServer_initWithQueue(BBServer* self, SEL _cmd, id arg1) {
     return bbServer;
 }
 
+#pragma mark - Test notification
+
 void testBanner() {
 	BBBulletin* bulletin = [[objc_getClass("BBBulletin") alloc] init];
     NSProcessInfo* processInfo = [NSProcessInfo processInfo];
@@ -312,6 +318,8 @@ void testBanner() {
         });
     }
 }
+
+#pragma mark - Constructor
 
 __attribute__((constructor)) static void initialize() {
     preferences = [[HBPreferences alloc] initWithIdentifier:@"dev.traurige.liddellpreferences"];
@@ -340,7 +348,7 @@ __attribute__((constructor)) static void initialize() {
 
     // icon
     [preferences registerFloat:&pfIconCornerRadius default:0 forKey:@"iconCornerRadius"];
-    
+
     // text
     [preferences registerUnsignedInteger:&pfTextColor default:kTextColorTypeBackground forKey:@"textColor"];
     [preferences registerObject:&pfCustomTextColor default:@"FFFFFF" forKey:@"customTextColor"];
