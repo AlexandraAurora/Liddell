@@ -26,7 +26,6 @@ CGFloat pfScrollRate;
 NSUInteger pfBackgroundColor;
 NSString* pfCustomBackgroundColor;
 NSUInteger pfBlurMode;
-CGFloat pfBlurAmount;
 CGFloat pfIconCornerRadius;
 NSUInteger pfTextColor;
 NSString* pfCustomTextColor;

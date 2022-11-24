@@ -135,7 +135,6 @@ void override_NCNotificationShortLookView_didMoveToWindow(NCNotificationShortLoo
         }
 
 		self.liddellBlurView = [[UIVisualEffectView alloc] initWithEffect:[self liddellBlur]];
-        [[self liddellBlurView] setAlpha:pfBlurAmount];
 		[[self liddellView] addSubview:[self liddellBlurView]];
 
         [[self liddellBlurView] setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -336,7 +335,6 @@ static void load_preferences() {
         kPreferenceKeyBackgroundColor: @(kPreferenceKeyBackgroundColorDefaultValue),
         kPreferenceKeyCustomBackgroundColor: kPreferenceKeyCustomBackgroundColorDefaultValue,
         kPreferenceKeyBlurMode: @(kPreferenceKeyBlurModeDefaultValue),
-        kPreferenceKeyBlurAmount: @(kPreferenceKeyBlurAmountDefaultValue),
         kPreferenceKeyIconCornerRadius: @(kPreferenceKeyIconCornerRadiusDefaultValue),
         kPreferenceKeyTextColor: @(kPreferenceKeyTextColorDefaultValue),
         kPreferenceKeyCustomTextColor: kPreferenceKeyCustomTextColorDefaultValue,
@@ -359,7 +357,6 @@ static void load_preferences() {
     pfBackgroundColor = [[preferences objectForKey:kPreferenceKeyBackgroundColor] intValue];
     pfCustomBackgroundColor = [preferences objectForKey:kPreferenceKeyCustomBackgroundColor];
     pfBlurMode = [[preferences objectForKey:kPreferenceKeyBlurMode] intValue];
-    pfBlurAmount = [[preferences objectForKey:kPreferenceKeyBlurAmount] floatValue];
     pfIconCornerRadius = [[preferences objectForKey:kPreferenceKeyIconCornerRadius] floatValue];
     pfTextColor = [[preferences objectForKey:kPreferenceKeyTextColor] intValue];
     pfCustomTextColor = [preferences objectForKey:kPreferenceKeyCustomTextColor];

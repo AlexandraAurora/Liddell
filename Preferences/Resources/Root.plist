@@ -281,34 +281,6 @@
 			<key>PostNotification</key>
 			<string>dev.traurige.liddell.preferences.reload</string>
 		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSStaticTextCell</string>
-			<key>label</key>
-			<string>Blur Amount</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSSliderCell</string>
-			<key>default</key>
-			<real>1</real>
-			<key>defaults</key>
-			<string>dev.traurige.liddell.preferences</string>
-			<key>key</key>
-			<string>BlurAmount</string>
-			<key>min</key>
-			<real>0.1</real>
-			<key>max</key>
-			<real>1</real>
-			<key>showValue</key>
-			<true />
-			<key>isSegmented</key>
-			<true />
-			<key>segmentCount</key>
-			<real>9</real>
-			<key>PostNotification</key>
-			<string>dev.traurige.liddell.preferences.reload</string>
-		</dict>
 
 		<dict>
 			<key>cell</key>
