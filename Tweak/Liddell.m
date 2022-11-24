@@ -286,15 +286,15 @@ void override_NCNotificationShortLookView_didMoveToWindow(NCNotificationShortLoo
     }
 }
 
-void (* orig_NCNotificationShortLookView__setGrabberVisible)(NCNotificationShortLookView* self, SEL _cmd, BOOL arg1);
-void override_NCNotificationShortLookView__setGrabberVisible(NCNotificationShortLookView* self, SEL _cmd, BOOL arg1) {
+void (* orig_NCNotificationShortLookView__setGrabberVisible)(NCNotificationShortLookView* self, SEL _cmd, BOOL visible);
+void override_NCNotificationShortLookView__setGrabberVisible(NCNotificationShortLookView* self, SEL _cmd, BOOL visible) {
     orig_NCNotificationShortLookView__setGrabberVisible(self, _cmd, NO);
 }
 
-id (* orig_BBServer_initWithQueue)(BBServer* self, SEL _cmd, id arg1);
-id override_BBServer_initWithQueue(BBServer* self, SEL _cmd, id arg1) {
-    bbServer = orig_BBServer_initWithQueue(self, _cmd, arg1);
-    queue = [self valueForKey:@"_queue"];
+BBServer* (* orig_BBServer_initWithQueue)(BBServer* self, SEL _cmd, OS_dispatch_queue_serial* queue);
+BBServer* override_BBServer_initWithQueue(BBServer* self, SEL _cmd, OS_dispatch_queue_serial* queue) {
+    bbServer = orig_BBServer_initWithQueue(self, _cmd, queue);
+    bbQueue = [self valueForKey:@"_queue"];
     return bbServer;
 }
 
@@ -312,7 +312,7 @@ static void show_test_banner() {
     [bulletin setDate:[NSDate date]];
 
     if ([bbServer respondsToSelector:@selector(publishBulletin:destinations:)]) {
-        dispatch_sync(queue, ^{
+        dispatch_sync(bbQueue, ^{
             [bbServer publishBulletin:bulletin destinations:15];
         });
     }

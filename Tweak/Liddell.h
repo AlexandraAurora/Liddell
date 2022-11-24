@@ -12,7 +12,7 @@
 #import "GcUniversal/GcColorPickerUtils.h"
 #import "../Preferences/PreferenceKeys.h"
 
-dispatch_queue_t queue;
+dispatch_queue_t bbQueue;
 
 NSUserDefaults* preferences;
 BOOL pfEnabled;
@@ -88,4 +88,13 @@ NSString* pfCustomBorderColor;
 @end
 
 @interface BBObserver : NSObject
+@end
+
+@interface DispatchObject : OS_object
+@end
+
+@interface DispatchQueue : DispatchObject
+@end
+
+@interface OS_dispatch_queue_serial : DispatchQueue
 @end
