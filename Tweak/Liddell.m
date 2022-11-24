@@ -63,12 +63,12 @@ void override_NCNotificationShortLookView_didMoveToWindow(NCNotificationShortLoo
         return;
     }
 
-    // check if the notification is a banner
     if (![[[self _viewControllerForAncestor] delegate] isKindOfClass:objc_getClass("SBNotificationBannerDestination")]) {
         return;
     }
 
-    // get the actual notification title, the title property of the hooked class is always uppercase
+    // get the notification title
+    // the title property of the hooked class is always uppercase for some reason
     UIViewController* controller;
     NCNotificationRequest* request;
     if ([[[self nextResponder] nextResponder] nextResponder]) {
@@ -299,9 +299,9 @@ id override_BBServer_initWithQueue(BBServer* self, SEL _cmd, id arg1) {
     return bbServer;
 }
 
-#pragma mark - Test notification
+#pragma mark - Notification callbacks
 
-void testBanner() {
+static void show_test_banner() {
 	BBBulletin* bulletin = [[objc_getClass("BBBulletin") alloc] init];
     NSProcessInfo* processInfo = [NSProcessInfo processInfo];
 
@@ -319,65 +319,83 @@ void testBanner() {
     }
 }
 
+#pragma mark - Preferences
+
+static void load_preferences() {
+    preferences = [[NSUserDefaults alloc] initWithSuiteName:@"dev.traurige.liddell.preferences"];
+
+    [preferences registerDefaults:@{
+		kPreferenceKeyEnabled: @(kPreferenceKeyEnabledDefaultValue),
+        kPreferenceKeyShowIcon: @(kPreferenceKeyShowIconDefaultValue),
+        kPreferenceKeyShowTitle: @(kPreferenceKeyShowTitleDefaultValue),
+        kPreferenceKeyShowMessage: @(kPreferenceKeyShowMessageDefaultValue),
+        kPreferenceKeyHeight: @(kPreferenceKeyHeightDefaultValue),
+        kPreferenceKeyCornerRadius: @(kPreferenceKeyCornerRadiusDefaultValue),
+        kPreferenceKeyOffset: @(kPreferenceKeyOffsetDefaultValue),
+        kPreferenceKeyScrollRate: @(kPreferenceKeyScrollRateDefaultValue),
+        kPreferenceKeyBackgroundColor: @(kPreferenceKeyBackgroundColorDefaultValue),
+        kPreferenceKeyCustomBackgroundColor: kPreferenceKeyCustomBackgroundColorDefaultValue,
+        kPreferenceKeyBlurMode: @(kPreferenceKeyBlurModeDefaultValue),
+        kPreferenceKeyBlurAmount: @(kPreferenceKeyBlurAmountDefaultValue),
+        kPreferenceKeyIconCornerRadius: @(kPreferenceKeyIconCornerRadiusDefaultValue),
+        kPreferenceKeyTextColor: @(kPreferenceKeyTextColorDefaultValue),
+        kPreferenceKeyCustomTextColor: kPreferenceKeyCustomTextColorDefaultValue,
+        kPreferenceKeyTextContent: @(kPreferenceKeyTextContentDefaultValue),
+        kPreferenceKeyTitleFontSize: @(kPreferenceKeyTitleFontSizeDefaultValue),
+        kPreferenceKeyContentFontSize: @(kPreferenceKeyContentFontSizeDefaultValue),
+        kPreferenceKeyBorderWidth: @(kPreferenceKeyBorderWidthDefaultValue),
+        kPreferenceKeyBorderColor: @(kPreferenceKeyBorderColorDefaultValue),
+        kPreferenceKeyCustomBorderColor: kPreferenceKeyCustomBorderColorDefaultValue
+	}];
+
+    pfEnabled = [[preferences objectForKey:kPreferenceKeyEnabled] boolValue];
+    pfShowIcon = [[preferences objectForKey:kPreferenceKeyShowIcon] boolValue];
+    pfShowTitle = [[preferences objectForKey:kPreferenceKeyShowTitle] boolValue];
+    pfShowMessage = [[preferences objectForKey:kPreferenceKeyShowMessage] boolValue];
+    pfHeight = [[preferences objectForKey:kPreferenceKeyHeight] floatValue];
+    pfCornerRadius = [[preferences objectForKey:kPreferenceKeyCornerRadius] floatValue];
+    pfOffset = [[preferences objectForKey:kPreferenceKeyOffset] floatValue];
+    pfScrollRate = [[preferences objectForKey:kPreferenceKeyScrollRate] floatValue];
+    pfBackgroundColor = [[preferences objectForKey:kPreferenceKeyBackgroundColor] intValue];
+    pfCustomBackgroundColor = [preferences objectForKey:kPreferenceKeyCustomBackgroundColor];
+    pfBlurMode = [[preferences objectForKey:kPreferenceKeyBlurMode] intValue];
+    pfBlurAmount = [[preferences objectForKey:kPreferenceKeyBlurAmount] floatValue];
+    pfIconCornerRadius = [[preferences objectForKey:kPreferenceKeyIconCornerRadius] floatValue];
+    pfTextColor = [[preferences objectForKey:kPreferenceKeyTextColor] intValue];
+    pfCustomTextColor = [preferences objectForKey:kPreferenceKeyCustomTextColor];
+    pfTextContent = [[preferences objectForKey:kPreferenceKeyTextContent] intValue];
+    pfTitleFontSize = [[preferences objectForKey:kPreferenceKeyTitleFontSize] floatValue];
+    pfContentFontSize = [[preferences objectForKey:kPreferenceKeyContentFontSize] floatValue];
+    pfBorderWidth = [[preferences objectForKey:kPreferenceKeyBorderWidth] floatValue];
+    pfBorderColor = [[preferences objectForKey:kPreferenceKeyBorderColor] intValue];
+    pfCustomBorderColor = [preferences objectForKey:kPreferenceKeyCustomBorderColor];
+}
+
 #pragma mark - Constructor
 
 __attribute__((constructor)) static void initialize() {
-    preferences = [[HBPreferences alloc] initWithIdentifier:@"dev.traurige.liddellpreferences"];
+    load_preferences();
 
-	[preferences registerBool:&pfEnabled default:YES forKey:@"enabled"];
 	if (!pfEnabled) {
         return;
     }
 
-    // visibility
-    [preferences registerBool:&pfShowIcon default:YES forKey:@"showIcon"];
-    [preferences registerBool:&pfShowTitle default:YES forKey:@"showTitle"];
-    [preferences registerBool:&pfShowMessage default:YES forKey:@"showMessage"];
-
-    // style
-    [preferences registerFloat:&pfHeight default:40 forKey:@"height"];
-    [preferences registerFloat:&pfCornerRadius default:8 forKey:@"cornerRadius"];
-    [preferences registerFloat:&pfOffset default:0 forKey:@"offset"];
-    [preferences registerFloat:&pfScrollRate default:50 forKey:@"scrollRate"];
-
-    // background
-    [preferences registerUnsignedInteger:&pfBackgroundColor default:kBackgroundColorTypeNone forKey:@"backgroundColor"];
-    [preferences registerObject:&pfCustomBackgroundColor default:@"000000" forKey:@"customBackgroundColor"];
-    [preferences registerUnsignedInteger:&pfBlurMode default:kBackgroundBlurTypeAdaptive forKey:@"blurMode"];
-    [preferences registerFloat:&pfBlurAmount default:1 forKey:@"blurAmount"];
-
-    // icon
-    [preferences registerFloat:&pfIconCornerRadius default:0 forKey:@"iconCornerRadius"];
-
-    // text
-    [preferences registerUnsignedInteger:&pfTextColor default:kTextColorTypeBackground forKey:@"textColor"];
-    [preferences registerObject:&pfCustomTextColor default:@"FFFFFF" forKey:@"customTextColor"];
-    [preferences registerUnsignedInteger:&pfTextContent default:kTextColorContentTypeBoth forKey:@"textContent"];
-    [preferences registerUnsignedInteger:&pfTitleFontSize default:15 forKey:@"titleFontSize"];
-    [preferences registerUnsignedInteger:&pfContentFontSize default:14 forKey:@"contentFontSize"];
-
-    // border
-    [preferences registerUnsignedInteger:&pfBorderWidth default:0 forKey:@"borderWidth"];
-    [preferences registerUnsignedInteger:&pfBorderColor default:kBorderColorTypeAdaptive forKey:@"borderColor"];
-    [preferences registerObject:&pfCustomBorderColor default:@"FFFFFF" forKey:@"customBorderColor"];
-
     class_addProperty(NSClassFromString(@"NCNotificationShortLookView"), "liddellView", (objc_property_attribute_t[]){{"T", "@\"UIView\""}, {"N", ""}, {"V", "_liddellView"}}, 3);
-    class_addProperty(NSClassFromString(@"NCNotificationShortLookView"), "liddellBlur", (objc_property_attribute_t[]){{"T", "@\"UIBlurEffect\""}, {"N", ""}, {"V", "_liddellBlur"}}, 3);
-    class_addProperty(NSClassFromString(@"NCNotificationShortLookView"), "liddellBlurView", (objc_property_attribute_t[]){{"T", "@\"UIVisualEffectView\""}, {"N", ""}, {"V", "_liddellBlurView"}}, 3);
-    class_addProperty(NSClassFromString(@"NCNotificationShortLookView"), "liddellIconView", (objc_property_attribute_t[]){{"T", "@\"UIImageView\""}, {"N", ""}, {"V", "_liddellIconView"}}, 3);
-    class_addProperty(NSClassFromString(@"NCNotificationShortLookView"), "liddellTitleLabel", (objc_property_attribute_t[]){{"T", "@\"UILabel\""}, {"N", ""}, {"V", "_liddellTitleLabel"}}, 3);
-    class_addProperty(NSClassFromString(@"NCNotificationShortLookView"), "liddellContentLabel", (objc_property_attribute_t[]){{"T", "@\"UILabel\""}, {"N", ""}, {"V", "_liddellContentLabel"}}, 3);
-
     class_addMethod(NSClassFromString(@"NCNotificationShortLookView"), @selector(liddellView), (IMP)&liddellView, "@@:");
     class_addMethod(NSClassFromString(@"NCNotificationShortLookView"), @selector(setLiddellView:), (IMP)&setLiddellView, "v@:@");
+    class_addProperty(NSClassFromString(@"NCNotificationShortLookView"), "liddellBlur", (objc_property_attribute_t[]){{"T", "@\"UIBlurEffect\""}, {"N", ""}, {"V", "_liddellBlur"}}, 3);
     class_addMethod(NSClassFromString(@"NCNotificationShortLookView"), @selector(liddellBlur), (IMP)&liddellBlur, "@@:");
     class_addMethod(NSClassFromString(@"NCNotificationShortLookView"), @selector(setLiddellBlur:), (IMP)&setLiddellBlur, "v@:@");
+    class_addProperty(NSClassFromString(@"NCNotificationShortLookView"), "liddellBlurView", (objc_property_attribute_t[]){{"T", "@\"UIVisualEffectView\""}, {"N", ""}, {"V", "_liddellBlurView"}}, 3);
     class_addMethod(NSClassFromString(@"NCNotificationShortLookView"), @selector(liddellBlurView), (IMP)&liddellBlurView, "@@:");
     class_addMethod(NSClassFromString(@"NCNotificationShortLookView"), @selector(setLiddellBlurView:), (IMP)&setLiddellBlurView, "v@:@");
+    class_addProperty(NSClassFromString(@"NCNotificationShortLookView"), "liddellIconView", (objc_property_attribute_t[]){{"T", "@\"UIImageView\""}, {"N", ""}, {"V", "_liddellIconView"}}, 3);
     class_addMethod(NSClassFromString(@"NCNotificationShortLookView"), @selector(liddellIconView), (IMP)&liddellIconView, "@@:");
     class_addMethod(NSClassFromString(@"NCNotificationShortLookView"), @selector(setLiddellIconView:), (IMP)&setLiddellIconView, "v@:@");
+    class_addProperty(NSClassFromString(@"NCNotificationShortLookView"), "liddellTitleLabel", (objc_property_attribute_t[]){{"T", "@\"UILabel\""}, {"N", ""}, {"V", "_liddellTitleLabel"}}, 3);
     class_addMethod(NSClassFromString(@"NCNotificationShortLookView"), @selector(liddellTitleLabel), (IMP)&liddellTitleLabel, "@@:");
     class_addMethod(NSClassFromString(@"NCNotificationShortLookView"), @selector(setLiddellTitleLabel:), (IMP)&setLiddellTitleLabel, "v@:@");
+    class_addProperty(NSClassFromString(@"NCNotificationShortLookView"), "liddellContentLabel", (objc_property_attribute_t[]){{"T", "@\"UILabel\""}, {"N", ""}, {"V", "_liddellContentLabel"}}, 3);
     class_addMethod(NSClassFromString(@"NCNotificationShortLookView"), @selector(liddellContentLabel), (IMP)&liddellContentLabel, "@@:");
     class_addMethod(NSClassFromString(@"NCNotificationShortLookView"), @selector(setLiddellContentLabel:), (IMP)&setLiddellContentLabel, "v@:@");
 
@@ -385,5 +403,6 @@ __attribute__((constructor)) static void initialize() {
     MSHookMessageEx(NSClassFromString(@"NCNotificationShortLookView"), @selector(_setGrabberVisible:), (IMP)&override_NCNotificationShortLookView__setGrabberVisible, (IMP *)&orig_NCNotificationShortLookView__setGrabberVisible);
     MSHookMessageEx(NSClassFromString(@"BBServer"), @selector(initWithQueue:), (IMP)&override_BBServer_initWithQueue, (IMP *)&orig_BBServer_initWithQueue);
 
-    CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)testBanner, (CFStringRef)@"dev.traurige.liddell/TestBanner", NULL, (CFNotificationSuspensionBehavior)kNilOptions);
+    CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)show_test_banner, (CFStringRef)@"dev.traurige.liddell.test_banner", NULL, (CFNotificationSuspensionBehavior)kNilOptions);
+    CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), NULL, (CFNotificationCallback)load_preferences, (CFStringRef)@"dev.traurige.liddell.preferences.reload", NULL, (CFNotificationSuspensionBehavior)kNilOptions);
 }

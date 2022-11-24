@@ -10,31 +10,12 @@
 #import "Liddell-Swift.h"
 #import <Kitten/libKitten.h>
 #import "GcUniversal/GcColorPickerUtils.h"
-#import <Cephei/HBPreferences.h>
-
-static const int kBackgroundColorTypeNone = 0;
-static const int kBackgroundColorTypeAdaptive = 1;
-static const int kBackgroundColorTypeCustom = 2;
-static const int kBackgroundBlurTypeNone = 0;
-static const int kBackgroundBlurTypeLight = 1;
-static const int kBackgroundBlurTypeDark = 2;
-static const int kBackgroundBlurTypeAdaptive = 3;
-static const int kTextColorTypeBackground = 0;
-static const int kTextColorTypeAdaptive = 1;
-static const int kTextColorTypeCustom = 2;
-static const int kTextColorContentTypeTitle = 0;
-static const int kTextColorContentTypeContent = 1;
-static const int kTextColorContentTypeBoth = 2;
-static const int kBorderColorTypeAdaptive = 0;
-static const int kBorderColorTypeCustom = 1;
+#import "../Preferences/PreferenceKeys.h"
 
 dispatch_queue_t queue;
 
-// preferences
-HBPreferences* preferences;
+NSUserDefaults* preferences;
 BOOL pfEnabled;
-
-// - visibility
 BOOL pfShowIcon;
 BOOL pfShowTitle;
 BOOL pfShowMessage;
@@ -42,24 +23,16 @@ CGFloat pfHeight;
 CGFloat pfCornerRadius;
 CGFloat pfOffset;
 CGFloat pfScrollRate;
-
-// - background
 NSUInteger pfBackgroundColor;
 NSString* pfCustomBackgroundColor;
 NSUInteger pfBlurMode;
 CGFloat pfBlurAmount;
-
-// - icon
 CGFloat pfIconCornerRadius;
-
-// - text
 NSUInteger pfTextColor;
 NSString* pfCustomTextColor;
 NSUInteger pfTextContent;
 NSUInteger pfTitleFontSize;
 NSUInteger pfContentFontSize;
-
-// - border
 NSUInteger pfBorderWidth;
 NSUInteger pfBorderColor;
 NSString* pfCustomBorderColor;

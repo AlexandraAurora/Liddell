@@ -1,22 +1,38 @@
-<?xml version="1" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1//EN" "http://www.apple.com/DTDs/PropertyList-1.dtd">
-<plist version="1">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
 <dict>
 	<key>items</key>
 	<array>
 		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+		</dict>
+		<dict>
 			<key>cellClass</key>
-			<string>CallaTwitterCell</string>
-			<key>leftUserDisplayName</key>
+			<string>CallaSingleContactCell</string>
+			<key>DisplayName</key>
 			<string>Alexandra</string>
-			<key>leftUserUsername</key>
+			<key>Username</key>
 			<string>Traurige</string>
-			<key>rightUserDisplayName</key>
-			<string>taki</string>
-			<key>rightUserUsername</key>
-			<string>74k1_</string>
+			<key>Url</key>
+			<string>https://github.com/Traurige</string>
 			<key>height</key>
 			<real>58</real>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true />
+			<key>defaults</key>
+			<string>dev.traurige.liddell.preferences</string>
+			<key>key</key>
+			<string>Enabled</string>
+			<key>label</key>
+			<string>Enable Liddell</string>
+            <key>PostNotification</key>
+			<string>dev.traurige.liddell.preferences.reload</string>
 		</dict>
 
 		<dict>
@@ -29,37 +45,43 @@
 			<key>cell</key>
 			<string>PSSwitchCell</string>
 			<key>default</key>
-			<true/>
+			<true />
 			<key>defaults</key>
-			<string>dev.traurige.liddellpreferences</string>
+			<string>dev.traurige.liddell.preferences</string>
 			<key>key</key>
-			<string>showIcon</string>
+			<string>ShowIcon</string>
 			<key>label</key>
 			<string>Show Icon</string>
+			<key>PostNotification</key>
+			<string>dev.traurige.liddell.preferences.reload</string>
 		</dict>
 		<dict>
 			<key>cell</key>
 			<string>PSSwitchCell</string>
 			<key>default</key>
-			<true/>
+			<true />
 			<key>defaults</key>
-			<string>dev.traurige.liddellpreferences</string>
+			<string>dev.traurige.liddell.preferences</string>
 			<key>key</key>
-			<string>showTitle</string>
+			<string>ShowTitle</string>
 			<key>label</key>
 			<string>Show Title</string>
+			<key>PostNotification</key>
+			<string>dev.traurige.liddell.preferences.reload</string>
 		</dict>
 		<dict>
 			<key>cell</key>
 			<string>PSSwitchCell</string>
 			<key>default</key>
-			<true/>
+			<true />
 			<key>defaults</key>
-			<string>dev.traurige.liddellpreferences</string>
+			<string>dev.traurige.liddell.preferences</string>
 			<key>key</key>
-			<string>showMessage</string>
+			<string>ShowMessage</string>
 			<key>label</key>
 			<string>Show Message</string>
+			<key>PostNotification</key>
+			<string>dev.traurige.liddell.preferences.reload</string>
 		</dict>
 
 		<dict>
@@ -80,17 +102,19 @@
 			<key>default</key>
 			<real>40</real>
 			<key>defaults</key>
-			<string>dev.traurige.liddellpreferences</string>
+			<string>dev.traurige.liddell.preferences</string>
 			<key>key</key>
-			<string>height</string>
+			<string>Height</string>
 			<key>min</key>
 			<real>20</real>
 			<key>max</key>
 			<real>50</real>
 			<key>showValue</key>
-			<true/>
+			<true />
 			<key>isSegmented</key>
-			<false/>
+			<false />
+			<key>PostNotification</key>
+			<string>dev.traurige.liddell.preferences.reload</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -104,17 +128,19 @@
 			<key>default</key>
 			<real>8</real>
 			<key>defaults</key>
-			<string>dev.traurige.liddellpreferences</string>
+			<string>dev.traurige.liddell.preferences</string>
 			<key>key</key>
-			<string>cornerRadius</string>
+			<string>CornerRadius</string>
 			<key>min</key>
 			<real>0</real>
 			<key>max</key>
 			<real>25</real>
 			<key>showValue</key>
-			<true/>
+			<true />
 			<key>isSegmented</key>
-			<false/>
+			<false />
+			<key>PostNotification</key>
+			<string>dev.traurige.liddell.preferences.reload</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -128,17 +154,19 @@
 			<key>default</key>
 			<real>0</real>
 			<key>defaults</key>
-			<string>dev.traurige.liddellpreferences</string>
+			<string>dev.traurige.liddell.preferences</string>
 			<key>key</key>
-			<string>offset</string>
+			<string>Offset</string>
 			<key>min</key>
 			<real>0</real>
 			<key>max</key>
 			<real>20</real>
 			<key>showValue</key>
-			<true/>
+			<true />
 			<key>isSegmented</key>
-			<false/>
+			<false />
+			<key>PostNotification</key>
+			<string>dev.traurige.liddell.preferences.reload</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -152,17 +180,19 @@
 			<key>default</key>
 			<real>50</real>
 			<key>defaults</key>
-			<string>dev.traurige.liddellpreferences</string>
+			<string>dev.traurige.liddell.preferences</string>
 			<key>key</key>
-			<string>scrollRate</string>
+			<string>ScrollRate</string>
 			<key>min</key>
 			<real>0</real>
 			<key>max</key>
 			<real>200</real>
 			<key>showValue</key>
-			<true/>
+			<true />
 			<key>isSegmented</key>
-			<false/>
+			<false />
+			<key>PostNotification</key>
+			<string>dev.traurige.liddell.preferences.reload</string>
 		</dict>
 
 		<dict>
@@ -183,9 +213,9 @@
 			<key>default</key>
 			<integer>0</integer>
 			<key>defaults</key>
-			<string>dev.traurige.liddellpreferences</string>
+			<string>dev.traurige.liddell.preferences</string>
 			<key>key</key>
-			<string>backgroundColor</string>
+			<string>BackgroundColor</string>
 			<key>validValues</key>
 			<array>
 				<integer>0</integer>
@@ -200,6 +230,8 @@
 			</array>
 			<key>alignment</key>
 			<string>3</string>
+			<key>PostNotification</key>
+			<string>dev.traurige.liddell.preferences.reload</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -209,13 +241,15 @@
 			<key>label</key>
 			<string>Custom Background Color:</string>
 			<key>defaults</key>
-			<string>dev.traurige.liddellpreferences</string>
+			<string>dev.traurige.liddell.preferences</string>
 			<key>key</key>
-			<string>customBackgroundColor</string>
+			<string>CustomBackgroundColor</string>
 			<key>supportsAlpha</key>
-			<true/>
+			<true />
 			<key>fallback</key>
 			<string>000000</string>
+			<key>PostNotification</key>
+			<string>dev.traurige.liddell.preferences.reload</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -225,11 +259,11 @@
 			<key>detail</key>
 			<string>PSListItemsController</string>
 			<key>defaults</key>
-			<string>dev.traurige.liddellpreferences</string>
+			<string>dev.traurige.liddell.preferences</string>
 			<key>label</key>
 			<string>Blur:</string>
 			<key>key</key>
-			<string>blurMode</string>
+			<string>BlurMode</string>
 			<key>validValues</key>
 			<array>
 				<integer>0</integer>
@@ -244,6 +278,8 @@
 				<string>Dark</string>
 				<string>Adaptive</string>
 			</array>
+			<key>PostNotification</key>
+			<string>dev.traurige.liddell.preferences.reload</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -257,19 +293,21 @@
 			<key>default</key>
 			<real>1</real>
 			<key>defaults</key>
-			<string>dev.traurige.liddellpreferences</string>
+			<string>dev.traurige.liddell.preferences</string>
 			<key>key</key>
-			<string>blurAmount</string>
+			<string>BlurAmount</string>
 			<key>min</key>
 			<real>0.1</real>
 			<key>max</key>
 			<real>1</real>
 			<key>showValue</key>
-			<true/>
+			<true />
 			<key>isSegmented</key>
-			<true/>
+			<true />
 			<key>segmentCount</key>
 			<real>9</real>
+			<key>PostNotification</key>
+			<string>dev.traurige.liddell.preferences.reload</string>
 		</dict>
 
 		<dict>
@@ -280,7 +318,7 @@
 			<key>footerText</key>
 			<string>Use -1 for a round icon.</string>
 			<key>isStaticText</key>
-			<true/>
+			<true />
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -294,17 +332,19 @@
 			<key>default</key>
 			<real>0</real>
 			<key>defaults</key>
-			<string>dev.traurige.liddellpreferences</string>
+			<string>dev.traurige.liddell.preferences</string>
 			<key>key</key>
-			<string>iconCornerRadius</string>
+			<string>IconCornerRadius</string>
 			<key>min</key>
 			<real>-1</real>
 			<key>max</key>
 			<real>18</real>
 			<key>showValue</key>
-			<true/>
+			<true />
 			<key>isSegmented</key>
-			<true/>
+			<true />
+			<key>PostNotification</key>
+			<string>dev.traurige.liddell.preferences.reload</string>
 		</dict>
 
 		<dict>
@@ -325,9 +365,9 @@
 			<key>default</key>
 			<integer>0</integer>
 			<key>defaults</key>
-			<string>dev.traurige.liddellpreferences</string>
+			<string>dev.traurige.liddell.preferences</string>
 			<key>key</key>
-			<string>textColor</string>
+			<string>TextColor</string>
 			<key>validValues</key>
 			<array>
 				<integer>0</integer>
@@ -342,6 +382,8 @@
 			</array>
 			<key>alignment</key>
 			<string>2</string>
+			<key>PostNotification</key>
+			<string>dev.traurige.liddell.preferences.reload</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -351,13 +393,15 @@
 			<key>label</key>
 			<string>Custom Text Color:</string>
 			<key>defaults</key>
-			<string>dev.traurige.liddellpreferences</string>
+			<string>dev.traurige.liddell.preferences</string>
 			<key>key</key>
-			<string>customTextColor</string>
+			<string>CustomTextColor</string>
 			<key>supportsAlpha</key>
-			<true/>
+			<true />
 			<key>fallback</key>
 			<string>FFFFFF</string>
+			<key>PostNotification</key>
+			<string>dev.traurige.liddell.preferences.reload</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -371,9 +415,9 @@
 			<key>default</key>
 			<integer>2</integer>
 			<key>defaults</key>
-			<string>dev.traurige.liddellpreferences</string>
+			<string>dev.traurige.liddell.preferences</string>
 			<key>key</key>
-			<string>textContent</string>
+			<string>TextContent</string>
 			<key>validValues</key>
 			<array>
 				<integer>0</integer>
@@ -388,6 +432,8 @@
 			</array>
 			<key>alignment</key>
 			<string>3</string>
+			<key>PostNotification</key>
+			<string>dev.traurige.liddell.preferences.reload</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -401,19 +447,21 @@
 			<key>default</key>
 			<real>15</real>
 			<key>defaults</key>
-			<string>dev.traurige.liddellpreferences</string>
+			<string>dev.traurige.liddell.preferences</string>
 			<key>key</key>
-			<string>titleFontSize</string>
+			<string>TitleFontSize</string>
 			<key>min</key>
 			<real>10</real>
 			<key>max</key>
 			<real>25</real>
 			<key>showValue</key>
-			<true/>
+			<true />
 			<key>isSegmented</key>
-			<true/>
+			<true />
 			<key>segmentCount</key>
 			<real>15</real>
+			<key>PostNotification</key>
+			<string>dev.traurige.liddell.preferences.reload</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -427,19 +475,21 @@
 			<key>default</key>
 			<real>14</real>
 			<key>defaults</key>
-			<string>dev.traurige.liddellpreferences</string>
+			<string>dev.traurige.liddell.preferences</string>
 			<key>key</key>
-			<string>contentFontSize</string>
+			<string>ContentFontSize</string>
 			<key>min</key>
 			<real>10</real>
 			<key>max</key>
 			<real>25</real>
 			<key>showValue</key>
-			<true/>
+			<true />
 			<key>isSegmented</key>
-			<true/>
+			<true />
 			<key>segmentCount</key>
 			<real>15</real>
+			<key>PostNotification</key>
+			<string>dev.traurige.liddell.preferences.reload</string>
 		</dict>
 
 		<dict>
@@ -460,19 +510,21 @@
 			<key>default</key>
 			<real>0</real>
 			<key>defaults</key>
-			<string>dev.traurige.liddellpreferences</string>
+			<string>dev.traurige.liddell.preferences</string>
 			<key>key</key>
-			<string>borderWidth</string>
+			<string>BorderWidth</string>
 			<key>min</key>
 			<real>0</real>
 			<key>max</key>
 			<real>3</real>
 			<key>showValue</key>
-			<true/>
+			<true />
 			<key>isSegmented</key>
-			<true/>
+			<true />
 			<key>segmentCount</key>
 			<real>3</real>
+			<key>PostNotification</key>
+			<string>dev.traurige.liddell.preferences.reload</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -486,9 +538,9 @@
 			<key>default</key>
 			<integer>0</integer>
 			<key>defaults</key>
-			<string>dev.traurige.liddellpreferences</string>
+			<string>dev.traurige.liddell.preferences</string>
 			<key>key</key>
-			<string>borderColor</string>
+			<string>BorderColor</string>
 			<key>validValues</key>
 			<array>
 				<integer>0</integer>
@@ -501,6 +553,8 @@
 			</array>
 			<key>alignment</key>
 			<string>3</string>
+			<key>PostNotification</key>
+			<string>dev.traurige.liddell.preferences.reload</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -510,24 +564,22 @@
 			<key>label</key>
 			<string>Custom Border Color:</string>
 			<key>defaults</key>
-			<string>dev.traurige.liddellpreferences</string>
+			<string>dev.traurige.liddell.preferences</string>
 			<key>key</key>
-			<string>customBorderColor</string>
+			<string>CustomBorderColor</string>
 			<key>supportsAlpha</key>
-			<true/>
+			<true />
 			<key>fallback</key>
 			<string>FFFFFF</string>
+			<key>PostNotification</key>
+			<string>dev.traurige.liddell.preferences.reload</string>
 		</dict>
-		
+
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
-			<string>Other Options</string>
-			<key>footerText</key>
-			<string>All changes require a respring.</string>
-			<key>isStaticText</key>
-			<true/>
+			<string>Tools</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -551,7 +603,7 @@
 			<key>label</key>
 			<string>Test Banner</string>
 			<key>action</key>
-			<string>testBanner:</string>
+			<string>showTestBanner</string>
 		</dict>
 
 		<dict>
@@ -560,7 +612,7 @@
 			<key>footerText</key>
 			<string>Thanks to you and everyone who has helped in any way.</string>
 			<key>isStaticText</key>
-			<true/>
+			<true />
 		</dict>
 		<dict>
  			<key>cell</key>
@@ -568,9 +620,7 @@
  			<key>label</key>
  			<string>Credits</string>
  			<key>detail</key>
- 			<string>LiddellCreditsSubPreferencesListController</string>
- 			<key>LiddellSub</key>
- 			<string>SubPreferences/Credits</string>
+ 			<string>LiddellCreditsListController</string>
  		</dict>
 
 		<dict>
@@ -579,37 +629,43 @@
 			<key>footerText</key>
 			<string>Liddell by Traurige, inspired by Nepeta's Nanobanners</string>
 			<key>isStaticText</key>
-			<true/>
+			<true />
 		</dict>
 		<dict>
 			<key>cellClass</key>
-			<string>HBLinkTableCell</string>
+			<string>CallaLinkCell</string>
 			<key>label</key>
 			<string>Source Code</string>
 			<key>subtitle</key>
 			<string>It's on GitHub</string>
 			<key>url</key>
 			<string>https://github.com/Traurige/Liddell</string>
+			<key>height</key>
+			<real>52</real>
 		</dict>
 		<dict>
 			<key>cellClass</key>
-			<string>HBLinkTableCell</string>
+			<string>CallaLinkCell</string>
 			<key>label</key>
 			<string>Bug/Feature</string>
 			<key>subtitle</key>
 			<string>Submit an issue</string>
 			<key>url</key>
 			<string>https://github.com/Traurige/Liddell/issues/new/choose</string>
+			<key>height</key>
+			<real>52</real>
 		</dict>
 		<dict>
 			<key>cellClass</key>
-			<string>HBLinkTableCell</string>
+			<string>CallaLinkCell</string>
 			<key>label</key>
 			<string>Donate</string>
 			<key>subtitle</key>
 			<string>I got a Ko-fi</string>
 			<key>url</key>
 			<string>https://ko-fi.com/traurige</string>
+			<key>height</key>
+			<real>52</real>
 		</dict>
 	</array>
 	<key>title</key>
