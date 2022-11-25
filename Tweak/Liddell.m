@@ -228,7 +228,7 @@ void override_NCNotificationShortLookView_didMoveToWindow(NCNotificationShortLoo
     if (pfShowMessage && ![self liddellContentLabel]) {
         [self setLiddellContentLabel:[[MarqueeLabel alloc] init]];
 
-        // some apps sent notifications starting with a line break, which causes the message to be hidden
+        // some apps send notifications starting with a line break, which causes the message to be hidden
         if ([self primaryText] && [self secondaryText]) {
             [[self liddellContentLabel] setText:[NSString stringWithFormat:@"%@: %@", [self primaryText], [self secondaryText]]];
         } else {
