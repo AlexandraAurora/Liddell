@@ -99,3 +99,23 @@ NSString* pfCustomBorderColor;
 
 @interface OS_dispatch_queue_serial : DispatchQueue
 @end
+
+@interface SBHIconModel : NSObject
+@property(nonatomic, copy, readonly)NSSet* visibleIconIdentifiers;
+@end
+
+@interface SBIconModel : SBHIconModel
+@end
+
+@interface SBIconController : UIViewController
+- (SBIconModel *)model;
+@end
+
+@interface SBApplicationController : NSObject
++ (instancetype)sharedInstance;
+- (NSArray *)allInstalledApplications;
+@end
+
+@interface SBApplication : NSObject
+@property(nonatomic, readonly)NSString* bundleIdentifier;
+@end
