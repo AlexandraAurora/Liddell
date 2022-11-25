@@ -73,8 +73,9 @@ void override_NCNotificationShortLookView_didMoveToWindow(NCNotificationShortLoo
     NCNotificationRequest* request;
     if ([[[self nextResponder] nextResponder] nextResponder]) {
         controller = (UIViewController *)[[[self nextResponder] nextResponder] nextResponder];
-        if ([controller isKindOfClass:objc_getClass("NCNotificationShortLookViewController")] && [((NCNotificationShortLookViewController *) controller) notificationRequest])
+        if ([controller isKindOfClass:objc_getClass("NCNotificationShortLookViewController")] && [((NCNotificationShortLookViewController *) controller) notificationRequest]) {
             request = [((NCNotificationShortLookViewController *) controller) notificationRequest];
+        }
     }
 
     if (!request || ![request content]) {
@@ -220,9 +221,6 @@ void override_NCNotificationShortLookView_didMoveToWindow(NCNotificationShortLoo
         }
     }
 
-    // this fixes a bug which causes the app name to disappear on long notification messages
-    [[self liddellTitleLabel] layoutIfNeeded];
-
 
     // content label
     if (pfShowMessage && ![self liddellContentLabel]) {
@@ -286,6 +284,10 @@ void override_NCNotificationShortLookView_didMoveToWindow(NCNotificationShortLoo
             ]];
         }
     }
+
+    // the title is hidden behind the content label if the content label is too long
+    // bringing it to the front fixes that issue
+    [[self liddellView] bringSubviewToFront:[self liddellTitleLabel]];
 }
 
 void (* orig_NCNotificationShortLookView__setGrabberVisible)(NCNotificationShortLookView* self, SEL _cmd, BOOL visible);
