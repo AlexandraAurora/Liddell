@@ -91,6 +91,8 @@ void override_NCNotificationShortLookView_didMoveToWindow(NCNotificationShortLoo
         [subview removeFromSuperview];
     }
 
+    UIImage* icon = [[[UIDevice currentDevice] systemVersion] floatValue] < 15.0 ? [self icons][0] : [self prominentIcon];
+
     // liddell view
     if (![self liddellView]) {
         self.liddellView = [[UIView alloc] init];
@@ -98,7 +100,7 @@ void override_NCNotificationShortLookView_didMoveToWindow(NCNotificationShortLoo
         [[[self liddellView] layer] setCornerRadius:pfCornerRadius];
 
         if (pfBackgroundColor == kBackgroundColorTypeAdaptive) {
-            [[self liddellView] setBackgroundColor:[[libKitten backgroundColor:[[self icons] objectAtIndex:0]] colorWithAlphaComponent:1]];
+            [[self liddellView] setBackgroundColor:[[libKitten backgroundColor:icon] colorWithAlphaComponent:1]];
         } else if (pfBackgroundColor == kBackgroundColorTypeCustom) {
             [[self liddellView] setBackgroundColor:[GcColorPickerUtils colorWithHex:pfCustomBackgroundColor]];
         }
@@ -106,7 +108,7 @@ void override_NCNotificationShortLookView_didMoveToWindow(NCNotificationShortLoo
         if (pfBorderWidth != 0) {
             [[[self liddellView] layer] setBorderWidth:pfBorderWidth];
             if (pfBorderColor == kBorderColorTypeAdaptive) {
-                [[[self liddellView] layer] setBorderColor:[[[libKitten primaryColor:[[self icons] objectAtIndex:0]] colorWithAlphaComponent:1] CGColor]];
+                [[[self liddellView] layer] setBorderColor:[[[libKitten primaryColor:icon] colorWithAlphaComponent:1] CGColor]];
             } else if (pfBorderColor == kBorderColorTypeCustom) {
                 [[[self liddellView] layer] setBorderColor:[[GcColorPickerUtils colorWithHex:pfCustomBorderColor] CGColor]];
             }
@@ -150,7 +152,7 @@ void override_NCNotificationShortLookView_didMoveToWindow(NCNotificationShortLoo
     // icon view
     if (pfShowIcon && ![self liddellIconView]) {
         self.liddellIconView = [[UIImageView alloc] init];
-        [[self liddellIconView] setImage:[[self icons] objectAtIndex:0]];
+        [[self liddellIconView] setImage:icon];
         [[self liddellIconView] setContentMode:UIViewContentModeScaleAspectFit];
         [[self liddellIconView] setClipsToBounds:YES];
 
@@ -197,7 +199,7 @@ void override_NCNotificationShortLookView_didMoveToWindow(NCNotificationShortLoo
                     }
                 }
             } else if (pfTextColor == kTextColorTypeAdaptive) {
-                [[self liddellTitleLabel] setTextColor:[libKitten secondaryColor:[[self icons] objectAtIndex:0]]];
+                [[self liddellTitleLabel] setTextColor:[libKitten secondaryColor:icon]];
             } else if (pfTextColor == kTextColorTypeCustom) {
                 [[self liddellTitleLabel] setTextColor:[GcColorPickerUtils colorWithHex:pfCustomTextColor]];
             }
@@ -254,7 +256,7 @@ void override_NCNotificationShortLookView_didMoveToWindow(NCNotificationShortLoo
                     }
                 }
             } else if (pfTextColor == kTextColorTypeAdaptive) {
-                [[self liddellContentLabel] setTextColor:[libKitten secondaryColor:[[self icons] objectAtIndex:0]]];
+                [[self liddellContentLabel] setTextColor:[libKitten secondaryColor:icon]];
             } else if (pfTextColor == kTextColorTypeCustom) {
                 [[self liddellContentLabel] setTextColor:[GcColorPickerUtils colorWithHex:pfCustomTextColor]];
             }
