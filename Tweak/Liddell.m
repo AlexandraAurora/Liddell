@@ -95,7 +95,7 @@ void override_NCNotificationShortLookView_didMoveToWindow(NCNotificationShortLoo
 
     // liddell view
     if (![self liddellView]) {
-        self.liddellView = [[UIView alloc] init];
+        [self setLiddellView:[[UIView alloc] init]];
         [[self liddellView] setClipsToBounds:YES];
         [[[self liddellView] layer] setCornerRadius:pfCornerRadius];
 
@@ -129,14 +129,14 @@ void override_NCNotificationShortLookView_didMoveToWindow(NCNotificationShortLoo
     // blur view
     if (pfBlurMode != kBackgroundBlurTypeNone && ![self liddellBlurView]) {
 		if (pfBlurMode == kBackgroundBlurTypeLight) {
-            self.liddellBlur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+            [self setLiddellBlur:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
         } else if (pfBlurMode == kBackgroundBlurTypeDark) {
-            self.liddellBlur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+            [self setLiddellBlur:[UIBlurEffect effectWithStyle:UIBlurEffectStyleDark]];
         } else if (pfBlurMode == kBackgroundBlurTypeAdaptive) {
-            self.liddellBlur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleRegular];
+            [self setLiddellBlur:[UIBlurEffect effectWithStyle:UIBlurEffectStyleRegular]];
         }
 
-		self.liddellBlurView = [[UIVisualEffectView alloc] initWithEffect:[self liddellBlur]];
+        [self setLiddellBlurView:[[UIVisualEffectView alloc] initWithEffect:[self liddellBlur]]];
 		[[self liddellView] addSubview:[self liddellBlurView]];
 
         [[self liddellBlurView] setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -151,7 +151,7 @@ void override_NCNotificationShortLookView_didMoveToWindow(NCNotificationShortLoo
 
     // icon view
     if (pfShowIcon && ![self liddellIconView]) {
-        self.liddellIconView = [[UIImageView alloc] init];
+        [self setLiddellIconView:[[UIImageView alloc] init]];
         [[self liddellIconView] setImage:icon];
         [[self liddellIconView] setContentMode:UIViewContentModeScaleAspectFit];
         [[self liddellIconView] setClipsToBounds:YES];
@@ -176,7 +176,7 @@ void override_NCNotificationShortLookView_didMoveToWindow(NCNotificationShortLoo
 
     // title label
     if (pfShowTitle && ![self liddellTitleLabel]) {
-        self.liddellTitleLabel = [[UILabel alloc] init];
+        [self setLiddellTitleLabel:[[UILabel alloc] init]];
         [[self liddellTitleLabel] setText:[content header]];
         [[self liddellTitleLabel] setFont:[UIFont boldSystemFontOfSize:pfTitleFontSize]];
         if (pfTextContent == kTextColorContentTypeTitle || pfTextContent == kTextColorContentTypeBoth) {
@@ -226,7 +226,7 @@ void override_NCNotificationShortLookView_didMoveToWindow(NCNotificationShortLoo
 
     // content label
     if (pfShowMessage && ![self liddellContentLabel]) {
-        self.liddellContentLabel = [[MarqueeLabel alloc] init];
+        [self setLiddellContentLabel:[[MarqueeLabel alloc] init]];
 
         // some apps sent notifications starting with a line break, which causes the message to be hidden
         if ([self primaryText] && [self secondaryText]) {
