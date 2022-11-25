@@ -308,9 +308,12 @@ static void show_test_banner() {
 	BBBulletin* bulletin = [[objc_getClass("BBBulletin") alloc] init];
     NSProcessInfo* processInfo = [NSProcessInfo processInfo];
 
-	[bulletin setTitle:@"Alice"];
-    [bulletin setMessage:@"Another day, a different dream perhaps?"];
-    [bulletin setSectionID:@"com.apple.MobileSMS"];
+    SBIconModel* model = [(SBIconController *)[objc_getClass("SBIconController") sharedInstance] model];
+    NSArray* bundleIdentifiers = [[model visibleIconIdentifiers] allObjects];
+
+	[bulletin setTitle:@"Liddell"];
+    [bulletin setMessage:@"Little test banner coming your way!"];
+    [bulletin setSectionID:bundleIdentifiers[arc4random_uniform([bundleIdentifiers count])]];
     [bulletin setBulletinID:[processInfo globallyUniqueString]];
     [bulletin setRecordID:[processInfo globallyUniqueString]];
     [bulletin setDate:[NSDate date]];
