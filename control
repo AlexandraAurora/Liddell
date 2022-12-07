@@ -2,7 +2,7 @@ Package: dev.traurige.liddell
 Name: Liddell
 Depends: firmware (>= 14.0), mobilesubstrate, preferenceloader, dev.traurige.libkitten (>= 1.3.3), com.mrgcgamer.libgcuniversal
 Conflicts: love.litten.liddell
-Version: 1.4
+Version: 1.4.1
 Architecture: iphoneos-arm
 Description: Little and colorful notification banners
 Maintainer: Traurige
