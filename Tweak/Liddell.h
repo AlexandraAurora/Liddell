@@ -45,6 +45,7 @@ NSString* pfCustomBorderColor;
 @interface NCNotificationShortLookView : MTTitledPlatterView
 @property(nonatomic, copy)NSArray* icons;
 @property(nonatomic, copy)UIImage* prominentIcon;
+@property(nonatomic, copy)UIImage* subordinateIcon;
 @property(nonatomic, copy)NSString* primaryText;
 @property(nonatomic, copy)NSString* secondaryText;
 @property(nonatomic, retain)UIView* liddellView;

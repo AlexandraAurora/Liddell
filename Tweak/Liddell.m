@@ -92,7 +92,12 @@ void override_NCNotificationShortLookView_didMoveToWindow(NCNotificationShortLoo
         [subview removeFromSuperview];
     }
 
-    UIImage* icon = [[[UIDevice currentDevice] systemVersion] floatValue] < 15.0 ? [self icons][0] : [self prominentIcon];
+    UIImage* icon;
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] < 15.0) {
+        icon = [self icons][0];
+    } else {
+        icon = [self prominentIcon] ?: [self subordinateIcon];
+    }
 
     // liddell view
     if (![self liddellView]) {
