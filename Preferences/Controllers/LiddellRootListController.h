@@ -2,6 +2,7 @@
 #import <Preferences/PSListController.h>
 #import <Preferences/PSSpecifier.h>
 #import "../PreferenceKeys.h"
+#import <rootless.h>
 
 @interface LiddellRootListController : PSListController
 @end
